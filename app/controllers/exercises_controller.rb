@@ -9,7 +9,7 @@ class ExercisesController < ApplicationController
     if @exercise
       render json: @exercise, status: :ok
     else
-      render json: { message: "Exercise not foud" } , status: :not_foud
+      render json: @exercise.errors, status: :not_foud
     end
   end
 
@@ -18,7 +18,7 @@ class ExercisesController < ApplicationController
     if @exercise.save
       render json: @exercise, status: :created
     else
-      render json: { message: "Could not create this exercise" }, status: 422
+      render json: @exercise.errors, status: 422
     end
   end
 
@@ -26,7 +26,7 @@ class ExercisesController < ApplicationController
     if @exercise.update(params_exercise)
       render json: @exercise, status: :ok
     else
-      render json: { message: "Exercise not foud" }, status: :not_foud
+      render json: @exercise.errors, status: :not_foud
     end
   end
 

@@ -9,12 +9,13 @@ class UsersController < ApplicationController
     if @user.save
       render json: @user, status: :created
     else
-      render json: { message: "Could not create this User"}, status: 422
+      render json: @user.errors, status: 422
+    end
   end
 
   private
   def params_user
-    params.require(:user).permit(:usename)
+    params.require(:user).permit(:nickname)
   end
 
   def set_user
